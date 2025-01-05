@@ -7,7 +7,7 @@ RNN/XGB SOURCES:
 1. https://open-meteo.com/en/docs/historical-weather-api
 2. https://catalog.data.gov/dataset/national-usfs-fire-occurrence-point-feature-layer-d3233/resource/bebc3dbf-0aa8-4e98-aa99-b84dc33bb1bf
 3. http://www.pymodis.org/index.html (for NDVI values)
-    
+
 PERFORMANCE FOR EACH MODEL
 
 CNN PERFORMANCE:
@@ -15,7 +15,7 @@ CNN PERFORMANCE:
 2. binary_accuracy: 0.9740 - loss: 0.0827 (test data)
 
 RNN PERFORMANCE: 
-1. 
+1. binary_accuracy: 0.84 - loss: 0.3729 (validation data)
 
 XGB PERFORMANCE:
-1. 
+1. binary_accuracy: 0.85 (validation data)
