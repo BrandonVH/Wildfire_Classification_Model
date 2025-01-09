@@ -8,7 +8,7 @@ const panels = [
   { icon: FaCog, title: "Settings", content: "App settings" },
 ];
 
-function PanelStack() {
+const PanelStack = () => {
   const [activePanel, setActivePanel] = useState(null); // Track fully exposed panel
   const [isAnimating, setIsAnimating] = useState(false); // Flag to track animation state
   const panelStackRef = useRef(null); // Ref for the entire stack
@@ -36,11 +36,11 @@ function PanelStack() {
       setActivePanel(null);
     }
   };
-  console.log(activePanel)
+
   return (
     <div
       ref={panelStackRef}
-      className="absolute bottom-[3.5rem] left-6 flex flex-col-reverse"
+      className="absolute bottom-[4.5rem] left-6 flex flex-col-reverse"
       onMouseLeave={handleMouseLeave}
     >
       {panels.map((panel, index) => (

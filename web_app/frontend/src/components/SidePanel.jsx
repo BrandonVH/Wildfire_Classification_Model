@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SidePanel() {
+const SidePanel = () => {
   return (
     <div className="absolute top-0 left-0 h-full w-96 bg-white shadow-md transform -translate-x-full transition-transform duration-300 ease-in-out">
       <div className="p-4">

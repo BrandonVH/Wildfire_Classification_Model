@@ -1,14 +1,24 @@
 import React from 'react'
 import { FaPlus, FaMinus, FaLayerGroup } from 'react-icons/fa'
 
-function ControlPanel() {
+const ControlPanel = ({ props }) => {
+  const handleZoomIn = () => {
+    if (props.zoomState == 22) return;
+    props.setZoomState(prev => prev + 1)
+  }
+
+  const handleZoomOut = () => {
+    if (props.zoomState == 1) return;
+    props.setZoomState(prev => prev - 1)
+  }
+
   return (
     <div className="absolute bottom-6 right-6 flex flex-col items-end">
       <div className="mb-2 bg-white rounded-full shadow-md">
-        <button className="p-2">
+        <button onClick={handleZoomIn} className="p-2 hover:bg-gray-300 rounded-l-full">
           <FaPlus className="w-4 h-4" />
         </button>
-        <button className="p-2">
+        <button onClick={handleZoomOut} className="p-2 hover:bg-gray-300 rounded-r-full">
           <FaMinus className="w-4 h-4" />
         </button>
       </div>

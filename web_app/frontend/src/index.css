@@ -10,3 +10,22 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+
+  .pac-container {
+    /* Anchor to the parent container and match its width */
+    @apply absolute left-0 w-full z-50;
+    margin-top: 8px;
+  }
+
+  .pac-item {
+    @apply px-3 py-1.5 text-gray-700 cursor-pointer hover:bg-gray-100;
+  }
+
+  .pac-item-query {
+    @apply font-semibold;
+  }
+
+  .pac-item-selected {
+    @apply bg-gray-200;
+  }
