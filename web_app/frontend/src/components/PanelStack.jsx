@@ -62,7 +62,7 @@ const PanelStack = () => {
       {panels.map((panel, index) => (
         <div
           key={index}
-          className={`cursor-default bg-white rounded-md shadow-md p-5 w-[19.2rem] transition-all duration-300 ease-in-out ${
+          className={`relative cursor-default bg-white rounded-md shadow-md p-5 w-[19.2rem] transition-all duration-300 ease-in-out ${
             activePanel !== null && index === activePanel + 1
               ? "mb-2" // raised state
               : "-mb-16"
