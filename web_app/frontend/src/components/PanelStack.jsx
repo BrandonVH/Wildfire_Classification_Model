@@ -1,26 +1,41 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaMap, FaInfo, FaCompass, FaCog } from "react-icons/fa";
 
 const panels = [
   { icon: FaMap, title: "Map", content: "Map settings and layers" },
-  { icon: FaInfo, title: "Info", content: "Information about the area" },
-  { icon: FaCompass, title: "Directions", content: "Get directions" },
   { icon: FaCog, title: "Settings", content: "App settings" },
+  { icon: FaCompass, title: "Directions", content: "Get directions" },
+  { icon: FaInfo, title: "Info", content: "Click on map to view wildfire risk analysis" },
 ];
 
 const PanelStack = () => {
-  const [activePanel, setActivePanel] = useState(null); // Track fully exposed panel
-  const [isAnimating, setIsAnimating] = useState(false); // Flag to track animation state
-  const panelStackRef = useRef(null); // Ref for the entire stack
+  const [activePanel, setActivePanel] = useState(null); 
+  const [pendingAnimatedPanel, setPendingAnimatedPanel] = useState(null)
+  const [isAnimating, setIsAnimating] = useState(false); 
+  const panelStackRef = useRef(null);
 
-  const handleMouseEnter = async (index) => {
-    if (isAnimating || index === activePanel) return; // Skip if animating or already active
-    setActivePanel(index); // Set the hovered panel as active
+  useEffect(() => {
+    if (isAnimating || pendingAnimatedPanel === activePanel) return;
+    let firstTimer, secondTimer;
+    firstTimer = setTimeout(() => {
+      setActivePanel(pendingAnimatedPanel)
+  
+      setIsAnimating(true);
+      secondTimer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 300); 
+    }, 150)
 
-    // Wait for the animation to complete before allowing new interactions
-    setIsAnimating(true);
-    await new Promise((resolve) => setTimeout(resolve, 300)); // Match CSS duration
-    setIsAnimating(false);
+    return () => {
+      clearTimeout(firstTimer)
+      clearTimeout(secondTimer)
+      setIsAnimating(false)
+    }
+  }, [isAnimating, pendingAnimatedPanel]);
+
+  const handleMouseEnter = (index) => {
+    if (index === pendingAnimatedPanel) return;
+    setPendingAnimatedPanel(index);
   };
 
   const handleMouseLeave = (event) => {
@@ -33,7 +48,8 @@ const PanelStack = () => {
       event.clientY < panelStackBounds.top ||
       event.clientY > panelStackBounds.bottom
     ) {
-      setActivePanel(null);
+      setActivePanel(null)
+      setPendingAnimatedPanel(null)
     }
   };
 

@@ -45,10 +45,20 @@ const MapView = () => {
       const lng = place.geometry.location.lng()
       
       if (map) {
+        console.log(`search; lat: ${lat}, lng: ${lng}`)
         setInterestPoint({lat, lng})
         setZoomState(14)
       }
     }
+  }
+
+  const handleMapClick = (e) => {
+    const lat = e.latLng.lat()
+    const lng = e.latLng.lng()
+
+    setInterestPoint({lat, lng})
+    console.log(`click; lat: ${lat}, lng: ${lng}`)
+    setZoomState(prev => prev < 14 ? 14 : prev)
   }
 
   if (!isLoaded) return <MapViewLoadingSkeleton />
@@ -76,7 +86,9 @@ const MapView = () => {
           streetViewControl: false,
           fullscreenControl: false,
           mapTypeId: 'satellite',
+          disableDoubleClickZoom: true
         }}
+        onClick={(e) => handleMapClick(e)}
       >
       </GoogleMap>
       <ControlPanel 
