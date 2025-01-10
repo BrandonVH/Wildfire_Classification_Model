@@ -6,6 +6,14 @@ import SearchBar from './SearchBar'
 
 const libraries = ['places']
 
+//  -124.848974,24.396308,-66.885444,49.384358
+const UNITED_STATES_BOUNDS = {
+  north: 49.384358,
+  south: 24.396308,
+  west: -124.848974,
+  east: -66.885444
+}
+
 const MapView = () => {
   const [map, setMap] = useState(null)
   const [zoomState, setZoomState] = useState(5)
@@ -86,7 +94,11 @@ const MapView = () => {
           streetViewControl: false,
           fullscreenControl: false,
           mapTypeId: 'satellite',
-          disableDoubleClickZoom: true
+          disableDoubleClickZoom: true,
+          restriction: {
+            latLngBounds: UNITED_STATES_BOUNDS,
+            strictBounds: false,
+          }
         }}
         onClick={(e) => handleMapClick(e)}
       >
