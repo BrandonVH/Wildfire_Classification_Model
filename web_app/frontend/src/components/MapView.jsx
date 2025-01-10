@@ -76,6 +76,11 @@ const MapView = () => {
       <div className="relative w-full sm:w-3/4 md:w-1/2 mx-auto">
         <Autocomplete
           onLoad={onAutocompleteLoad}
+          options={{
+            bounds: UNITED_STATES_BOUNDS,
+            componentRestrictions: { country: "us" },
+            strictBounds: false
+          }}
           onPlaceChanged={handleOnPlaceChanged}
         >
           <SearchBar autocomplete={autocomplete} />
