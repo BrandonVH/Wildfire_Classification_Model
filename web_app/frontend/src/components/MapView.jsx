@@ -89,7 +89,7 @@ const MapView = () => {
       <GoogleMap
         onLoad={onMapLoad}
         onUnmount={onMapUnmount}
-        center={interestPoint || { lat: 48.8584, lng: 2.2945 }}
+        center={interestPoint || { lat: 38.7946, lng: -106.5348 }}
         zoom={zoomState}
         onZoomChanged={onZoomChanged}
         mapContainerStyle={{ width: '100%', height: '100%' }}
@@ -103,7 +103,8 @@ const MapView = () => {
           restriction: {
             latLngBounds: UNITED_STATES_BOUNDS,
             strictBounds: false,
-          }
+          },
+          disableDefaultUI: true
         }}
         onClick={(e) => handleMapClick(e)}
       >
